@@ -1,14 +1,19 @@
 {
   "name": "vscode-icons-figma",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "description": "A Figma plugin to use VS Code icons",
   "main": "code.js",
   "scripts": {
     "build": "npx webpack",
-    "watch": "webpack --mode=development --watch"
+    "watch": "webpack --mode=development --watch",
+    "prepublishOnly": "TypeScriptESBuild Source/**/*.ts"
   },
-  "author": "",
-  "license": "ISC",
+  "author": {
+    "name": "Nikola Hristov",
+    "email": "nikola@nikolahristov.tech",
+    "url": "https://nikolahristov.tech"
+  },
+  "license": "MIT",
   "dependencies": {
     "@gregoranders/csv": "0.0.13",
     "css-loader": "6.8.1",
@@ -25,5 +30,21 @@
     "url-loader": "4.1.1",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4"
+  },
+  "homepage": "https://github.com/CodeEditorLand/CodeEditorLand#readme",
+  "bugs": {
+    "url": "https://github.com/CodeEditorLand/CodeEditorLand/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeEditorLand/CodeEditorLand.git"
+  },
+  "type": "module",
+  "private": "false",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "typescript-esbuild": "0.3.1"
   }
 }
