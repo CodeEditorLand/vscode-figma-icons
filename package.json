@@ -3,13 +3,13 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "A Figma plugin to use VS Code icons",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"homepage": "HTTPS://github.com/CodeEditorLand/LandFigmaIcons#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://github.com/CodeEditorLand/LandFigmaIcons/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandFigmaIcons.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
