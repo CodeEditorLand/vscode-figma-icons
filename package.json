@@ -3,6 +3,9 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "A Figma plugin to use VS Code icons",
+	"keywords": [
+		"land"
+	],
 	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons#readme",
 	"bugs": {
 		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons/issues"
