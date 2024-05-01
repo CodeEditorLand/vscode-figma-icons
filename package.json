@@ -1,31 +1,11 @@
 {
-	"name": "vscode-icons-figma",
-	"version": "0.0.1",
-	"private": false,
-	"description": "A Figma plugin to use VS Code icons",
-	"keywords": [
-		"land"
-	],
-	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons#readme",
-	"bugs": {
-		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+HTTPS://github.com/CodeEditorLand/LandFigmaIcons.git"
-	},
-	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "🌆 — Land —",
 		"email": "Land@PlayForm.Cloud",
+		"name": "🌆 — Land —",
 		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
-	"type": "module",
-	"main": "code.js",
-	"scripts": {
-		"Document": "Document 'Source/**/*.ts'",
-		"build": "npx webpack",
-		"prepublishOnly": "Build 'Source/**/*.ts'"
+	"bugs": {
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons/issues"
 	},
 	"dependencies": {
 		"@gregoranders/csv": "0.0.13",
@@ -39,11 +19,31 @@
 		"ts-loader": "9.5.1",
 		"url-loader": "4.1.1"
 	},
+	"description": "A Figma plugin to use VS Code icons",
 	"devDependencies": {
 		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6"
 	},
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons#readme",
+	"keywords": [
+		"land"
+	],
+	"license": "SEE LICENSE IN LICENSE",
+	"main": "code.js",
+	"name": "vscode-icons-figma",
+	"private": false,
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandFigmaIcons.git"
+	},
+	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
+		"build": "npx webpack",
+		"prepublishOnly": "Build 'Source/**/*.ts'"
+	},
+	"type": "module",
+	"version": "0.0.1"
 }
