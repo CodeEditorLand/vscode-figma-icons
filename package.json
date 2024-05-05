@@ -3,46 +3,45 @@
 	"version": "0.0.1",
 	"private": false,
 	"description": "A Figma plugin to use VS Code icons",
-	"homepage": "https://github.com/CodeEditorLand/Foundation#readme",
+	"keywords": [
+		"land"
+	],
+	"homepage": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons#readme",
 	"bugs": {
-		"url": "https://github.com/CodeEditorLand/Foundation/issues"
+		"url": "HTTPS://GitHub.Com/CodeEditorLand/LandFigmaIcons/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/CodeEditorLand/Foundation.git"
+		"url": "git+HTTPS://github.com/CodeEditorLand/LandFigmaIcons.git"
 	},
 	"license": "SEE LICENSE IN LICENSE",
 	"author": {
-		"name": "Playform",
-		"email": "Hello@Playform.Cloud",
-		"url": "https://playform.cloud"
+		"name": "🌆 — Land —",
+		"email": "Land@PlayForm.Cloud",
+		"url": "HTTPS://Land.PlayForm.Cloud"
 	},
 	"type": "module",
 	"main": "code.js",
 	"scripts": {
+		"Document": "Document 'Source/**/*.ts'",
 		"build": "npx webpack",
-		"prepublishOnly": "TypeScriptESBuild 'Source/**/*.ts'",
-		"watch": "webpack --mode=development --watch"
+		"prepublishOnly": "Build 'Source/**/*.ts'"
 	},
 	"dependencies": {
-		"@gregoranders/csv": "0.0.8",
-		"css-loader": "^3.1.0",
-		"csv-parser": "^3.0.0",
-		"csvtojson": "^2.0.10",
-		"fast-csv": "^4.3.6",
-		"html-webpack-inline-source-plugin": "0.0.10",
-		"html-webpack-plugin": "^3.2.0",
-		"json-loader": "^0.5.7",
-		"json5-loader": "^4.0.1",
-		"style-loader": "^0.23.1",
-		"ts-loader": "^6.0.4",
-		"typescript": "^3.5.3",
-		"url-loader": "^2.1.0",
-		"webpack": "^4.38.0",
-		"webpack-cli": "^3.3.6"
+		"@gregoranders/csv": "0.0.13",
+		"css-loader": "7.1.1",
+		"csv-parser": "3.0.0",
+		"csvtojson": "2.0.10",
+		"fast-csv": "5.0.1",
+		"json-loader": "0.5.7",
+		"json5-loader": "4.0.1",
+		"style-loader": "4.0.0",
+		"ts-loader": "9.5.1",
+		"url-loader": "4.1.1"
 	},
 	"devDependencies": {
-		"typescript-esbuild": "0.4.5"
+		"@playform/build": "0.0.7",
+		"@playform/document": "0.0.6"
 	},
 	"publishConfig": {
 		"access": "public"
