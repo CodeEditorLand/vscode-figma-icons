@@ -7,14 +7,14 @@
 	},
 	"dependencies": {
 		"@gregoranders/csv": "0.0.8",
-		"css-loader": "^3.1.0",
-		"csv-parser": "^3.0.0",
-		"csvtojson": "^2.0.10",
-		"fast-csv": "^4.3.6",
-		"json-loader": "^0.5.7",
-		"json5-loader": "^4.0.1",
-		"style-loader": "^0.23.1",
-		"ts-loader": "^6.0.4",
-		"url-loader": "^2.1.0"
+		"css-loader": "3.1.0",
+		"csv-parser": "3.0.0",
+		"csvtojson": "2.0.10",
+		"fast-csv": "4.3.6",
+		"json-loader": "0.5.7",
+		"json5-loader": "4.0.1",
+		"style-loader": "0.23.1",
+		"ts-loader": "6.0.4",
+		"url-loader": "2.1.0"
 	}
 }
