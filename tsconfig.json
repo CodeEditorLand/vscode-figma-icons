@@ -1,8 +1,0 @@
-{
-	"compilerOptions": {
-		"module": "esnext",
-		"target": "es6",
-		"moduleResolution": "node",
-		"resolveJsonModule": true
-	}
-}
