@@ -15,6 +15,7 @@ interface PluginAPI {
 	readonly clientStorage: ClientStorageAPI;
 
 	getNodeById(id: string): BaseNode | null;
+
 	getStyleById(id: string): BaseStyle | null;
 
 	currentPage: PageNode;
@@ -40,6 +41,7 @@ interface PluginAPI {
 	createGridStyle(): GridStyle;
 
 	importComponentByKeyAsync(key: string): Promise<ComponentNode>;
+
 	importStyleByKeyAsync(key: string): Promise<BaseStyle>;
 
 	listAvailableFontsAsync(): Promise<Font[]>;
@@ -49,6 +51,7 @@ interface PluginAPI {
 	createNodeFromSvg(svg: string): FrameNode;
 
 	createImage(data: Uint8Array): Image;
+
 	getImageByHash(hash: string): Image;
 
 	group(
@@ -65,6 +68,7 @@ interface PluginAPI {
 
 interface ClientStorageAPI {
 	getAsync(key: string): Promise<any | undefined>;
+
 	setAsync(key: string, value: any): Promise<void>;
 }
 
@@ -252,6 +256,7 @@ interface ExportSettingsImage {
 	format: "JPG" | "PNG";
 	contentsOnly?: boolean; // defaults to true
 	suffix?: string;
+
 	constraint?: ExportSettingsConstraints;
 }
 
@@ -362,11 +367,13 @@ interface BaseNodeMixin {
 	remove(): void;
 
 	getPluginData(key: string): string;
+
 	setPluginData(key: string, value: string): void;
 
 	// Namespace is a string that must be at least 3 alphanumeric characters, and should
 	// be a name related to your plugin. Other plugins will be able to read this data.
 	getSharedPluginData(namespace: string, key: string): string;
+
 	setSharedPluginData(namespace: string, key: string, value: string): void;
 }
 
@@ -448,6 +455,7 @@ interface CornerMixin {
 
 interface ExportMixin {
 	exportSettings: ExportSettings[];
+
 	exportAsync(settings?: ExportSettings): Promise<Uint8Array>; // Defaults to PNG format
 }
 
@@ -559,34 +567,52 @@ interface TextNode extends DefaultShapeMixin, ConstraintMixin {
 	fontName: FontName | symbol;
 	textCase: TextCase | symbol;
 	textDecoration: TextDecoration | symbol;
+
 	letterSpacing: LetterSpacing | symbol;
 	lineHeight: LineHeight | symbol;
 
 	getRangeFontSize(start: number, end: number): number | symbol;
+
 	setRangeFontSize(start: number, end: number, value: number): void;
+
 	getRangeFontName(start: number, end: number): FontName | symbol;
+
 	setRangeFontName(start: number, end: number, value: FontName): void;
+
 	getRangeTextCase(start: number, end: number): TextCase | symbol;
+
 	setRangeTextCase(start: number, end: number, value: TextCase): void;
+
 	getRangeTextDecoration(start: number, end: number): TextDecoration | symbol;
+
 	setRangeTextDecoration(
 		start: number,
 		end: number,
 		value: TextDecoration,
 	): void;
+
 	getRangeLetterSpacing(start: number, end: number): LetterSpacing | symbol;
+
 	setRangeLetterSpacing(
 		start: number,
 		end: number,
 		value: LetterSpacing,
 	): void;
+
 	getRangeLineHeight(start: number, end: number): LineHeight | symbol;
+
 	setRangeLineHeight(start: number, end: number, value: LineHeight): void;
+
 	getRangeFills(start: number, end: number): Paint[] | symbol;
+
 	setRangeFills(start: number, end: number, value: Paint[]): void;
+
 	getRangeTextStyleId(start: number, end: number): string | symbol;
+
 	setRangeTextStyleId(start: number, end: number, value: string): void;
+
 	getRangeFillStyleId(start: number, end: number): string | symbol;
+
 	setRangeFillStyleId(start: number, end: number, value: string): void;
 }
 
@@ -672,6 +698,7 @@ interface TextStyle extends BaseStyle {
 	fontSize: number;
 	textDecoration: TextDecoration;
 	fontName: FontName;
+
 	letterSpacing: LetterSpacing;
 	lineHeight: LineHeight;
 	paragraphIndent: number;
@@ -694,5 +721,6 @@ interface GridStyle extends BaseStyle {
 
 interface Image {
 	readonly hash: string;
+
 	getBytesAsync(): Promise<Uint8Array>;
 }

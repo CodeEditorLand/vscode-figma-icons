@@ -1,14 +1,23 @@
 import "./ui.css";
 
 const codicon = require("./assets/codicon.json5");
+
 const seti = require("./assets/seti.json5");
+
 const search = <HTMLInputElement>document.getElementById("search-input");
+
 const banner = <HTMLElement>document.getElementById("banner");
+
 const bannerBoth = <HTMLElement>document.getElementById("banner-both");
+
 const bannerCodicon = <HTMLElement>document.getElementById("banner-codicon");
+
 const bannerSeti = <HTMLElement>document.getElementById("banner-seti");
+
 const iconList = document.getElementById("icon-list");
+
 const codicons = codicon["default"];
+
 const setiIcons = seti["default"];
 
 // load codicons
@@ -20,9 +29,13 @@ codicons.forEach(
 		description: string;
 	}) => {
 		let iconListItem = document.createElement("li");
+
 		let iconName = icon.short_name;
+
 		let iconFriendlyName = icon.short_name.replace(/-/g, " ");
+
 		let iconDescription = icon.description;
+
 		let iconGlyph = icon.character;
 		iconListItem.id = iconName;
 		iconListItem.setAttribute("icon-glyph", iconGlyph);
@@ -46,9 +59,13 @@ setiIcons.forEach(
 		description: string;
 	}) => {
 		let iconListItem = document.createElement("li");
+
 		let iconName = icon.short_name;
+
 		let iconFriendlyName = icon.short_name.replace(/-/g, " ");
+
 		let iconDescription = icon.description;
+
 		let iconGlyph = icon.character;
 		iconListItem.id = iconName;
 		iconListItem.setAttribute("icon-glyph", iconGlyph);
@@ -96,6 +113,7 @@ search.addEventListener("keyup", function () {
 			icon.description.includes(searchInput) ||
 			icon.short_name.replace(/-/g, " ").includes(searchInput),
 	);
+
 	const setiFilter = setiIcons.filter(
 		(icon) =>
 			icon.description.includes(searchInput) ||
@@ -104,6 +122,7 @@ search.addEventListener("keyup", function () {
 
 	codiconFilter.forEach((result) => {
 		let name = result["short_name"];
+
 		let item = document.querySelectorAll(`li[icon-name="${name}"]`);
 		item.forEach((element) => {
 			element.classList.remove("hide");
@@ -113,6 +132,7 @@ search.addEventListener("keyup", function () {
 
 	setiFilter.forEach((result) => {
 		let name = result["short_name"];
+
 		let item = document.querySelectorAll(`li[icon-name="${name}"]`);
 		item.forEach((element) => {
 			element.classList.remove("hide");
@@ -127,9 +147,13 @@ search.focus();
 
 iconList.addEventListener("click", function (e) {
 	let iconElm = <HTMLElement>e.target;
+
 	let glyph = iconElm.getAttribute("icon-glyph");
+
 	let name = iconElm.getAttribute("icon-name");
+
 	let library = iconElm.getAttribute("icon-library");
+
 	if (glyph != null) {
 		// place item on Figma
 		parent.postMessage(
