@@ -77,7 +77,7 @@ figma.ui.onmessage = async (msg) => {
 						style: `${currentFontName["style"]}`,
 					});
 
-					let currentFont = <String>currentFontName["family"];
+					let currentFont = <string>currentFontName["family"];
 
 					let text = <TextNode>selection;
 					text.characters = msg.glyph;
