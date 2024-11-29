@@ -24,8 +24,11 @@ const setiIcons = seti["default"];
 codicons.forEach(
 	(icon: {
 		short_name: string;
+
 		character: string;
+
 		unicode: string;
+
 		description: string;
 	}) => {
 		let iconListItem = document.createElement("li");
@@ -37,13 +40,19 @@ codicons.forEach(
 		let iconDescription = icon.description;
 
 		let iconGlyph = icon.character;
+
 		iconListItem.id = iconName;
+
 		iconListItem.setAttribute("icon-glyph", iconGlyph);
+
 		iconListItem.setAttribute("icon-name", iconName);
+
 		iconListItem.setAttribute("icon-library", "codicon");
 
 		iconListItem.innerHTML += `<glyph>${iconGlyph}</glyph>`;
+
 		iconListItem.innerHTML += `<name>${iconFriendlyName}</name>`;
+
 		iconListItem.innerHTML += `<metadata> ${iconFriendlyName} codicon ${iconDescription} </metadata>`;
 
 		iconList.appendChild(iconListItem);
@@ -54,8 +63,11 @@ codicons.forEach(
 setiIcons.forEach(
 	(icon: {
 		short_name: string;
+
 		character: string;
+
 		unicode: string;
+
 		description: string;
 	}) => {
 		let iconListItem = document.createElement("li");
@@ -67,13 +79,19 @@ setiIcons.forEach(
 		let iconDescription = icon.description;
 
 		let iconGlyph = icon.character;
+
 		iconListItem.id = iconName;
+
 		iconListItem.setAttribute("icon-glyph", iconGlyph);
+
 		iconListItem.setAttribute("icon-name", iconName);
+
 		iconListItem.setAttribute("icon-library", "seti");
 
 		iconListItem.innerHTML += `<glyph>${iconGlyph}</glyph>`;
+
 		iconListItem.innerHTML += `<name>${iconFriendlyName}</name>`;
+
 		iconListItem.innerHTML += `<metadata> ${iconFriendlyName} seti ${iconDescription} </metadata>`;
 
 		iconList.appendChild(iconListItem);
@@ -85,15 +103,18 @@ onmessage = (event) => {
 
 	if (pluginMessage.type == "hasIcons") {
 		console.log(pluginMessage);
+
 		banner.classList.remove("hide");
 
 		if (pluginMessage.codicons == false) {
 			banner.classList.add("codicons");
+
 			bannerCodicon.classList.remove("hide");
 		}
 
 		if (pluginMessage.seti == false) {
 			banner.classList.add("seti");
+
 			bannerSeti.classList.remove("hide");
 		}
 	}
@@ -124,6 +145,7 @@ search.addEventListener("keyup", function () {
 		let name = result["short_name"];
 
 		let item = document.querySelectorAll(`li[icon-name="${name}"]`);
+
 		item.forEach((element) => {
 			element.classList.remove("hide");
 		});
@@ -134,6 +156,7 @@ search.addEventListener("keyup", function () {
 		let name = result["short_name"];
 
 		let item = document.querySelectorAll(`li[icon-name="${name}"]`);
+
 		item.forEach((element) => {
 			element.classList.remove("hide");
 		});

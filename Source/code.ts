@@ -26,23 +26,29 @@ const icons = data["default"];
 // load fonts
 async function loadFonts() {
 	await figma.loadFontAsync({ family: "Roboto", style: "Regular" });
+
 	await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+
 	await figma
 		.loadFontAsync({ family: "codicon", style: "Regular" })
 		.catch((e) => {
 			console.log(e);
+
 			figma.ui.postMessage({ type: "hasIcons", codicons: false });
 
 			return false;
 		});
+
 	await figma
 		.loadFontAsync({ family: "seti", style: "Regular" })
 		.catch((e) => {
 			console.log(e);
+
 			figma.ui.postMessage({ type: "hasIcons", seti: false });
 
 			return false;
 		});
+
 	await figma.importStyleByKeyAsync(codiconTextStyleKey).catch((e) => {
 		console.log(e);
 	});
@@ -56,6 +62,7 @@ figma.ui.onmessage = async (msg) => {
 		// create new text object
 		if (figma.currentPage.selection.length == 0) {
 			console.log("creating new text object");
+
 			await createNewIconObject(msg, nodes);
 
 			figma.currentPage.selection = nodes;
@@ -72,6 +79,7 @@ figma.ui.onmessage = async (msg) => {
 					let selection = <TextNode>figma.currentPage.selection[i];
 
 					let currentFontName = selection.fontName;
+
 					await figma.loadFontAsync({
 						family: `${currentFontName["family"]}`,
 						style: `${currentFontName["style"]}`,
@@ -80,25 +88,32 @@ figma.ui.onmessage = async (msg) => {
 					let currentFont = <string>currentFontName["family"];
 
 					let text = <TextNode>selection;
+
 					text.characters = msg.glyph;
 
 					// override styles if not codicon
 					if (msg.library == "codicon" && currentFont !== "codicon") {
 						text.name = "codicon: " + msg.name;
+
 						text.fontName = { family: "codicon", style: "Regular" };
 
 						await figma.importStyleByKeyAsync(codiconTextStyleKey);
+
 						await figma.importStyleByKeyAsync(codiconColorStyleKey);
+
 						text.textStyleId = codiconTextStyleId;
 					}
 
 					// override styles if not seti
 					if (msg.library == "seti" && currentFont !== "seti") {
 						text.name = "seti: " + msg.name;
+
 						text.fontName = { family: "seti", style: "Regular" };
 
 						await figma.importStyleByKeyAsync(setiTextStyleKey);
+
 						await figma.importStyleByKeyAsync(setiColorStyleKey);
+
 						text.textStyleId = setiTextStyleId;
 					}
 
@@ -112,27 +127,40 @@ figma.ui.onmessage = async (msg) => {
 };
 async function createNewIconObject(msg: any, nodes: any[]) {
 	const text: TextNode = figma.createText();
+
 	text.characters = msg.glyph;
+
 	text.fontSize = 16;
+
 	text.x = figma.viewport.center.x;
+
 	text.y = figma.viewport.center.y;
 
 	if (msg.library == "seti") {
 		text.name = "seti: " + msg.name;
+
 		text.fontName = { family: "seti", style: "Regular" };
 
 		await figma.importStyleByKeyAsync(setiTextStyleKey);
+
 		await figma.importStyleByKeyAsync(setiColorStyleKey);
+
 		text.textStyleId = setiTextStyleId;
+
 		text.fillStyleId = setiColorStyleId;
 	}
+
 	if (msg.library == "codicon") {
 		text.name = "codicon: " + msg.name;
+
 		text.fontName = { family: "codicon", style: "Regular" };
 
 		await figma.importStyleByKeyAsync(codiconTextStyleKey);
+
 		await figma.importStyleByKeyAsync(codiconColorStyleKey);
+
 		text.textStyleId = codiconTextStyleId;
+
 		text.fillStyleId = codiconColorStyleId;
 	}
 

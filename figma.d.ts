@@ -4,12 +4,17 @@ declare const __html__: string;
 
 interface PluginAPI {
 	readonly apiVersion: "1.0.0";
+
 	readonly command: string;
+
 	readonly root: DocumentNode;
+
 	readonly viewport: ViewportAPI;
+
 	closePlugin(message?: string): void;
 
 	showUI(html: string, options?: ShowUIOptions): void;
+
 	readonly ui: UIAPI;
 
 	readonly clientStorage: ClientStorageAPI;
@@ -23,21 +28,35 @@ interface PluginAPI {
 	readonly mixed: symbol;
 
 	createRectangle(): RectangleNode;
+
 	createLine(): LineNode;
+
 	createEllipse(): EllipseNode;
+
 	createPolygon(): PolygonNode;
+
 	createStar(): StarNode;
+
 	createVector(): VectorNode;
+
 	createText(): TextNode;
+
 	createBooleanOperation(): BooleanOperationNode;
+
 	createFrame(): FrameNode;
+
 	createComponent(): ComponentNode;
+
 	createPage(): PageNode;
+
 	createSlice(): SliceNode;
 
 	createPaintStyle(): PaintStyle;
+
 	createTextStyle(): TextStyle;
+
 	createEffectStyle(): EffectStyle;
+
 	createGridStyle(): GridStyle;
 
 	importComponentByKeyAsync(key: string): Promise<ComponentNode>;
@@ -45,7 +64,9 @@ interface PluginAPI {
 	importStyleByKeyAsync(key: string): Promise<BaseStyle>;
 
 	listAvailableFontsAsync(): Promise<Font[]>;
+
 	loadFontAsync(fontName: FontName): Promise<void>;
+
 	readonly hasMissingFont: boolean;
 
 	createNodeFromSvg(svg: string): FrameNode;
@@ -59,6 +80,7 @@ interface PluginAPI {
 		parent: BaseNode & ChildrenMixin,
 		index?: number,
 	): FrameNode;
+
 	flatten(
 		nodes: ReadonlyArray<BaseNode>,
 		parent?: BaseNode & ChildrenMixin,
@@ -74,7 +96,9 @@ interface ClientStorageAPI {
 
 type ShowUIOptions = {
 	visible?: boolean;
+
 	width?: number;
+
 	height?: number;
 };
 
@@ -88,11 +112,15 @@ type OnMessageProperties = {
 
 interface UIAPI {
 	show(): void;
+
 	hide(): void;
+
 	resize(width: number, height: number): void;
+
 	close(): void;
 
 	postMessage(pluginMessage: any, options?: UIPostMessageOptions): void;
+
 	onmessage:
 		| ((pluginMessage: any, props: OnMessageProperties) => void)
 		| undefined;
@@ -100,7 +128,9 @@ interface UIAPI {
 
 interface ViewportAPI {
 	center: { x: number; y: number };
+
 	zoom: number;
+
 	scrollAndZoomIntoView(nodes: ReadonlyArray<BaseNode>);
 }
 
@@ -111,24 +141,31 @@ type Transform = [[number, number, number], [number, number, number]];
 
 interface Vector {
 	readonly x: number;
+
 	readonly y: number;
 }
 
 interface RGB {
 	readonly r: number;
+
 	readonly g: number;
+
 	readonly b: number;
 }
 
 interface RGBA {
 	readonly r: number;
+
 	readonly g: number;
+
 	readonly b: number;
+
 	readonly a: number;
 }
 
 interface FontName {
 	readonly family: string;
+
 	readonly style: string;
 }
 
@@ -138,22 +175,31 @@ type TextDecoration = "NONE" | "UNDERLINE" | "STRIKETHROUGH";
 
 interface ArcData {
 	readonly startingAngle: number;
+
 	readonly endingAngle: number;
+
 	readonly innerRadius: number;
 }
 
 interface ShadowEffect {
 	readonly type: "DROP_SHADOW" | "INNER_SHADOW";
+
 	readonly color: RGBA;
+
 	readonly offset: Vector;
+
 	readonly radius: number;
+
 	readonly visible: boolean;
+
 	readonly blendMode: BlendMode;
 }
 
 interface BlurEffect {
 	readonly type: "LAYER_BLUR" | "BACKGROUND_BLUR";
+
 	readonly radius: number;
+
 	readonly visible: boolean;
 }
 
@@ -163,30 +209,41 @@ type ConstraintType = "MIN" | "CENTER" | "MAX" | "STRETCH" | "SCALE";
 
 interface Constraints {
 	readonly horizontal: ConstraintType;
+
 	readonly vertical: ConstraintType;
 }
 
 interface ColorStop {
 	readonly position: number;
+
 	readonly color: RGBA;
 }
 
 interface ImageFilters {
 	exposure?: number;
+
 	contrast?: number;
+
 	saturation?: number;
+
 	temperature?: number;
+
 	tint?: number;
+
 	highlights?: number;
+
 	shadows?: number;
 }
 
 interface SolidPaint {
 	readonly type: "SOLID";
+
 	readonly color: RGB;
 
 	readonly visible?: boolean;
+
 	readonly opacity?: number;
+
 	readonly blendMode?: BlendMode;
 }
 
@@ -196,24 +253,33 @@ interface GradientPaint {
 		| "GRADIENT_RADIAL"
 		| "GRADIENT_ANGULAR"
 		| "GRADIENT_DIAMOND";
+
 	readonly gradientTransform: Transform;
+
 	readonly gradientStops: ReadonlyArray<ColorStop>;
 
 	readonly visible?: boolean;
+
 	readonly opacity?: number;
+
 	readonly blendMode?: BlendMode;
 }
 
 interface ImagePaint {
 	readonly type: "IMAGE";
+
 	readonly scaleMode: "FILL" | "FIT" | "CROP" | "TILE";
+
 	readonly imageHash: string | null;
+
 	readonly imageTransform?: Transform; // setting for "CROP"
 	readonly scalingFactor?: number; // setting for "TILE"
 	readonly filters?: ImageFilters;
 
 	readonly visible?: boolean;
+
 	readonly opacity?: number;
+
 	readonly blendMode?: BlendMode;
 }
 
@@ -221,12 +287,15 @@ type Paint = SolidPaint | GradientPaint | ImagePaint;
 
 interface Guide {
 	readonly axis: "X" | "Y";
+
 	readonly offset: number;
 }
 
 interface RowsColsLayoutGrid {
 	readonly pattern: "ROWS" | "COLUMNS";
+
 	readonly alignment: "MIN" | "MAX" | "STRETCH" | "CENTER";
+
 	readonly gutterSize: number;
 
 	readonly count: number; // Infinity when "Auto" is set in the UI
@@ -234,14 +303,17 @@ interface RowsColsLayoutGrid {
 	readonly offset?: number; // Not set for alignment: "CENTER"
 
 	readonly visible?: boolean;
+
 	readonly color?: RGBA;
 }
 
 interface GridLayoutGrid {
 	readonly pattern: "GRID";
+
 	readonly sectionSize: number;
 
 	readonly visible?: boolean;
+
 	readonly color?: RGBA;
 }
 
@@ -249,11 +321,13 @@ type LayoutGrid = RowsColsLayoutGrid | GridLayoutGrid;
 
 interface ExportSettingsConstraints {
 	type: "SCALE" | "WIDTH" | "HEIGHT";
+
 	value: number;
 }
 
 interface ExportSettingsImage {
 	format: "JPG" | "PNG";
+
 	contentsOnly?: boolean; // defaults to true
 	suffix?: string;
 
@@ -262,8 +336,10 @@ interface ExportSettingsImage {
 
 interface ExportSettingsSVG {
 	format: "SVG";
+
 	contentsOnly?: boolean; // defaults to true
 	suffix?: string;
+
 	svgOutlineText?: boolean; // defaults to true
 	svgIdAttribute?: boolean; // defaults to false
 	svgSimplifyStroke?: boolean; // defaults to true
@@ -271,6 +347,7 @@ interface ExportSettingsSVG {
 
 interface ExportSettingsPDF {
 	format: "PDF";
+
 	contentsOnly?: boolean; // defaults to true
 	suffix?: string;
 }
@@ -284,33 +361,45 @@ type WindingRule = "NONZERO" | "EVENODD";
 
 interface VectorVertex {
 	readonly x: number;
+
 	readonly y: number;
+
 	readonly strokeCap?: StrokeCap;
+
 	readonly strokeJoin?: StrokeJoin;
+
 	readonly cornerRadius?: number;
+
 	readonly handleMirroring?: HandleMirroring;
 }
 
 interface VectorSegment {
 	readonly start: number;
+
 	readonly end: number;
+
 	readonly tangentStart?: Vector; // Defaults to { x: 0, y: 0 }
+
 	readonly tangentEnd?: Vector; // Defaults to { x: 0, y: 0 }
 }
 
 interface VectorRegion {
 	readonly windingRule: WindingRule;
+
 	readonly loops: ReadonlyArray<ReadonlyArray<number>>;
 }
 
 interface VectorNetwork {
 	readonly vertices: ReadonlyArray<VectorVertex>;
+
 	readonly segments: ReadonlyArray<VectorSegment>;
+
 	readonly regions?: ReadonlyArray<VectorRegion>; // Defaults to []
 }
 
 interface VectorPath {
 	readonly windingRule: WindingRule | "NONE";
+
 	readonly data: string;
 }
 
@@ -318,12 +407,14 @@ type VectorPaths = ReadonlyArray<VectorPath>;
 
 type LetterSpacing = {
 	readonly value: number;
+
 	readonly unit: "PIXELS" | "PERCENT";
 };
 
 type LineHeight =
 	| {
 			readonly value: number;
+
 			readonly unit: "PIXELS" | "PERCENT";
 	  }
 	| {
@@ -360,10 +451,14 @@ interface Font {
 
 interface BaseNodeMixin {
 	readonly id: string;
+
 	readonly parent: (BaseNode & ChildrenMixin) | null;
+
 	name: string; // Note: setting this also sets \`autoRename\` to false on TextNodes
 	readonly removed: boolean;
+
 	toString(): string;
+
 	remove(): void;
 
 	getPluginData(key: string): string;
@@ -379,6 +474,7 @@ interface BaseNodeMixin {
 
 interface SceneNodeMixin {
 	visible: boolean;
+
 	locked: boolean;
 }
 
@@ -386,9 +482,11 @@ interface ChildrenMixin {
 	readonly children: ReadonlyArray<BaseNode>;
 
 	appendChild(child: BaseNode): void;
+
 	insertChild(index: number, child: BaseNode): void;
 
 	findAll(callback?: (node: BaseNode) => boolean): ReadonlyArray<BaseNode>;
+
 	findOne(callback: (node: BaseNode) => boolean): BaseNode | null;
 }
 
@@ -398,32 +496,47 @@ interface ConstraintMixin {
 
 interface LayoutMixin {
 	readonly absoluteTransform: Transform;
+
 	relativeTransform: Transform;
+
 	x: number;
+
 	y: number;
+
 	rotation: number; // In degrees
 
 	readonly width: number;
+
 	readonly height: number;
 
 	resize(width: number, height: number): void;
+
 	resizeWithoutConstraints(width: number, height: number): void;
 }
 
 interface BlendMixin {
 	opacity: number;
+
 	blendMode: BlendMode;
+
 	isMask: boolean;
+
 	effects: ReadonlyArray<Effect>;
+
 	effectStyleId: string;
 }
 
 interface FrameMixin {
 	backgrounds: ReadonlyArray<Paint>;
+
 	layoutGrids: ReadonlyArray<LayoutGrid>;
+
 	clipsContent: boolean;
+
 	guides: ReadonlyArray<Guide>;
+
 	gridStyleId: string;
+
 	backgroundStyleId: string;
 }
 
@@ -438,18 +551,27 @@ type HandleMirroring = "NONE" | "ANGLE" | "ANGLE_AND_LENGTH";
 
 interface GeometryMixin {
 	fills: ReadonlyArray<Paint> | symbol;
+
 	strokes: ReadonlyArray<Paint>;
+
 	strokeWeight: number;
+
 	strokeAlign: "CENTER" | "INSIDE" | "OUTSIDE";
+
 	strokeCap: StrokeCap | symbol;
+
 	strokeJoin: StrokeJoin | symbol;
+
 	dashPattern: ReadonlyArray<number>;
+
 	fillStyleId: string | symbol;
+
 	strokeStyleId: string;
 }
 
 interface CornerMixin {
 	cornerRadius: number | symbol;
+
 	cornerSmoothing: number;
 }
 
@@ -486,14 +608,17 @@ interface DocumentNode extends BaseNodeMixin, ChildrenMixin {
 
 interface PageNode extends BaseNodeMixin, ChildrenMixin, ExportMixin {
 	readonly type: "PAGE";
+
 	clone(): PageNode;
 
 	guides: ReadonlyArray<Guide>;
+
 	selection: ReadonlyArray<SceneNode>;
 }
 
 interface FrameNode extends DefaultContainerMixin {
 	readonly type: "FRAME" | "GROUP";
+
 	clone(): FrameNode;
 }
 
@@ -503,6 +628,7 @@ interface SliceNode
 		LayoutMixin,
 		ExportMixin {
 	readonly type: "SLICE";
+
 	clone(): SliceNode;
 }
 
@@ -511,64 +637,95 @@ interface RectangleNode
 		ConstraintMixin,
 		CornerMixin {
 	readonly type: "RECTANGLE";
+
 	clone(): RectangleNode;
+
 	topLeftRadius: number;
+
 	topRightRadius: number;
+
 	bottomLeftRadius: number;
+
 	bottomRightRadius: number;
 }
 
 interface LineNode extends DefaultShapeMixin, ConstraintMixin {
 	readonly type: "LINE";
+
 	clone(): LineNode;
 }
 
 interface EllipseNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
 	readonly type: "ELLIPSE";
+
 	clone(): EllipseNode;
+
 	arcData: ArcData;
 }
 
 interface PolygonNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
 	readonly type: "POLYGON";
+
 	clone(): PolygonNode;
+
 	pointCount: number;
 }
 
 interface StarNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
 	readonly type: "STAR";
+
 	clone(): StarNode;
+
 	pointCount: number;
+
 	innerRadius: number;
 }
 
 interface VectorNode extends DefaultShapeMixin, ConstraintMixin, CornerMixin {
 	readonly type: "VECTOR";
+
 	clone(): VectorNode;
+
 	vectorNetwork: VectorNetwork;
+
 	vectorPaths: VectorPaths;
+
 	handleMirroring: HandleMirroring | symbol;
 }
 
 interface TextNode extends DefaultShapeMixin, ConstraintMixin {
 	readonly type: "TEXT";
+
 	clone(): TextNode;
+
 	characters: string;
+
 	readonly hasMissingFont: boolean;
+
 	textAlignHorizontal: "LEFT" | "CENTER" | "RIGHT" | "JUSTIFIED";
+
 	textAlignVertical: "TOP" | "CENTER" | "BOTTOM";
+
 	textAutoResize: "NONE" | "WIDTH_AND_HEIGHT" | "HEIGHT";
+
 	paragraphIndent: number;
+
 	paragraphSpacing: number;
+
 	autoRename: boolean;
 
 	textStyleId: string | symbol;
+
 	fontSize: number | symbol;
+
 	fontName: FontName | symbol;
+
 	textCase: TextCase | symbol;
+
 	textDecoration: TextDecoration | symbol;
 
 	letterSpacing: LetterSpacing | symbol;
+
 	lineHeight: LineHeight | symbol;
 
 	getRangeFontSize(start: number, end: number): number | symbol;
@@ -618,17 +775,23 @@ interface TextNode extends DefaultShapeMixin, ConstraintMixin {
 
 interface ComponentNode extends DefaultContainerMixin {
 	readonly type: "COMPONENT";
+
 	clone(): ComponentNode;
 
 	createInstance(): InstanceNode;
+
 	description: string;
+
 	readonly remote: boolean;
+
 	readonly key: string; // The key to use with "importComponentByKeyAsync"
 }
 
 interface InstanceNode extends DefaultContainerMixin {
 	readonly type: "INSTANCE";
+
 	clone(): InstanceNode;
+
 	masterComponent: ComponentNode;
 }
 
@@ -637,7 +800,9 @@ interface BooleanOperationNode
 		ChildrenMixin,
 		CornerMixin {
 	readonly type: "BOOLEAN_OPERATION";
+
 	clone(): BooleanOperationNode;
+
 	booleanOperation: "UNION" | "INTERSECT" | "SUBTRACT" | "EXCLUDE";
 }
 
@@ -680,39 +845,54 @@ type StyleType = "PAINT" | "TEXT" | "EFFECT" | "GRID";
 
 interface BaseStyle {
 	readonly id: string;
+
 	readonly type: StyleType;
+
 	name: string;
+
 	description: string;
+
 	remote: boolean;
+
 	readonly key: string; // The key to use with "importStyleByKeyAsync"
 	remove(): void;
 }
 
 interface PaintStyle extends BaseStyle {
 	type: "PAINT";
+
 	paints: ReadonlyArray<Paint>;
 }
 
 interface TextStyle extends BaseStyle {
 	type: "TEXT";
+
 	fontSize: number;
+
 	textDecoration: TextDecoration;
+
 	fontName: FontName;
 
 	letterSpacing: LetterSpacing;
+
 	lineHeight: LineHeight;
+
 	paragraphIndent: number;
+
 	paragraphSpacing: number;
+
 	textCase: TextCase;
 }
 
 interface EffectStyle extends BaseStyle {
 	type: "EFFECT";
+
 	effects: ReadonlyArray<Effect>;
 }
 
 interface GridStyle extends BaseStyle {
 	type: "GRID";
+
 	layoutGrids: ReadonlyArray<LayoutGrid>;
 }
 
